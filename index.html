@@ -1,0 +1,831 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Contabilidad gubernamental · Unidad 5 · Profesor Sergio Tertusio</title>
+<meta name="description" content="Unidad 5 de Contabilidad gubernamental. Profesor Sergio Tertusio. Tres lecturas sobre la consolidación de la información financiera.">
+<style>
+  :root {
+    --bg: #f3eee4;
+    --bg-2: #fffdf8;
+    --ink: #1c2430;
+    --muted: #5e6872;
+    --line: #e0d5c4;
+    --accent: #0e5c4a;
+    --accent-ink: #f7fffb;
+    --brass: #8a5a12;
+    --good: #0d6b3f;
+    --bad: #8e2d2d;
+    --card: #fffdf8;
+    --header: rgba(243, 238, 228, .94);
+    --shadow: 0 12px 32px rgba(48, 36, 16, .06);
+    --fig: #f7f1e6;
+    --fig-ink: #1c2430;
+  }
+  html[data-theme="dark"] {
+    --bg: #10151c;
+    --bg-2: #181f29;
+    --ink: #f4efe6;
+    --muted: #b7c1cb;
+    --line: #2d3846;
+    --accent: #8ee0c4;
+    --accent-ink: #06241c;
+    --brass: #f0c27a;
+    --good: #8ee0b2;
+    --bad: #ffb1b1;
+    --card: #1a222d;
+    --header: rgba(16, 21, 28, .94);
+    --shadow: 0 12px 32px rgba(0, 0, 0, .35);
+    --fig: #222b36;
+    --fig-ink: #f4efe6;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font: 1.05rem/1.6 "Segoe UI", system-ui, sans-serif;
+    overflow-x: hidden;
+  }
+  h1, h2, h3, .brand strong {
+    font-family: Georgia, "Iowan Old Style", "Palatino Linotype", Palatino, serif;
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    line-height: 1.15;
+  }
+  header {
+    position: sticky;
+    top: 0;
+    z-index: 30;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: .6rem .75rem;
+    padding: .7rem 1rem;
+    background: var(--header);
+    border-bottom: 1px solid var(--line);
+    backdrop-filter: blur(10px);
+  }
+  .brand { flex: 1 1 12rem; min-width: 0; }
+  .brand strong { display: block; font-size: clamp(1.02rem, 2.4vw, 1.35rem); }
+  .brand span { display: block; color: var(--muted); font-size: .82rem; }
+  .tools { display: flex; flex-wrap: wrap; gap: .45rem; }
+  button, .as-btn {
+    font: inherit;
+    cursor: pointer;
+    border-radius: 999px;
+    border: 1px solid var(--line);
+    background: var(--card);
+    color: var(--ink);
+    padding: .55rem .9rem;
+    min-height: 44px;
+  }
+  button.primary { background: var(--accent); color: var(--accent-ink); border-color: transparent; }
+  button.ghost { background: transparent; }
+  button:disabled { opacity: .45; cursor: not-allowed; }
+  :focus-visible { outline: 3px solid var(--brass); outline-offset: 2px; }
+  main { width: min(920px, 100%); margin: 0 auto; padding: 1.25rem 1rem 3.5rem; }
+  p, li, h1, h2, h3 { overflow-wrap: anywhere; }
+  .kicker {
+    color: var(--brass);
+    font-size: .82rem;
+    font-weight: 700;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    margin: 0 0 .4rem;
+  }
+  h1 { font-size: clamp(2.15rem, 6vw, 3.5rem); margin: 0 0 .6rem; }
+  h2 { font-size: clamp(1.55rem, 3.5vw, 2.15rem); margin: 0 0 .7rem; }
+  h3 { font-size: 1.2rem; margin: 1.1rem 0 .4rem; }
+  p { margin: .55rem 0; }
+  .lead { font-size: 1.12rem; max-width: 42rem; }
+  .muted { color: var(--muted); }
+  .grid { display: grid; grid-template-columns: 1fr; gap: 1rem; margin-top: 1.25rem; }
+  @media (min-width: 860px) { .grid { grid-template-columns: repeat(3, 1fr); } }
+  .card, .panel, .why, .opt, dialog {
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 18px;
+    box-shadow: var(--shadow);
+  }
+  .card { padding: 0; text-align: left; overflow: hidden; width: 100%; }
+  .card .pad, .panel { padding: 1rem 1.05rem 1.15rem; }
+  .card h2 { font-size: 1.35rem; }
+  .figure { background: var(--fig); color: var(--fig-ink); padding: .35rem .35rem 0; }
+  .figure svg { display: block; width: min(100%, 460px); height: auto; margin: 0 auto; }
+  .cap { color: var(--muted); font-size: .78rem; margin: .35rem .2rem .7rem; }
+  ul, ol { margin: .4rem 0 .6rem; padding-left: 1.15rem; }
+  li { margin: .28rem 0; }
+  .bar { height: 6px; background: var(--line); border-radius: 99px; overflow: hidden; margin: .55rem 0; }
+  .bar span { display: block; height: 100%; background: var(--accent); }
+  .row { display: flex; flex-wrap: wrap; gap: .5rem; margin-top: .9rem; }
+  .opt { display: block; width: 100%; text-align: left; box-shadow: none; margin: .45rem 0; border-radius: 14px; padding: .8rem .95rem; }
+  .opt.good { border-color: var(--good); background: color-mix(in srgb, var(--good) 16%, var(--card)); }
+  .opt.bad { border-color: var(--bad); background: color-mix(in srgb, var(--bad) 14%, var(--card)); }
+  .why { box-shadow: none; padding: .85rem 1rem; border-left: 4px solid var(--accent); border-radius: 0 14px 14px 0; }
+  .why.ok { border-left-color: var(--good); }
+  .why.no { border-left-color: var(--bad); }
+  .score { font-family: Georgia, Palatino, serif; font-size: clamp(2.6rem, 8vw, 4.2rem); margin: .2rem 0; letter-spacing: -0.04em; }
+  .mod { display: flex; gap: .8rem; align-items: flex-start; width: 100%; text-align: left; border-radius: 16px; margin: .45rem 0; padding: .85rem 1rem; }
+  .num { flex: 0 0 auto; width: 2rem; height: 2rem; border-radius: 50%; display: grid; place-items: center; background: var(--bg); border: 1px solid var(--line); font-weight: 700; }
+  .done .num { background: var(--accent); color: var(--accent-ink); border-color: transparent; }
+  dialog { border: 1px solid var(--line); color: var(--ink); padding: 1.2rem; max-width: min(440px, calc(100% - 2rem)); }
+  dialog::backdrop { background: rgba(10, 12, 16, .55); }
+  dialog h2 { font-size: 1.45rem; }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+</style>
+</head>
+<body>
+<header>
+  <div class="brand">
+    <strong>Profesor Sergio Tertusio</strong>
+    <span>Contabilidad gubernamental · Unidad 5</span>
+  </div>
+  <div class="tools">
+    <button type="button" class="ghost" id="menu">Menú</button>
+    <button type="button" class="ghost" id="theme" aria-pressed="false">Modo claro</button>
+    <button type="button" class="ghost" id="reset">Reiniciar</button>
+  </div>
+</header>
+<main id="app"></main>
+<dialog id="dlg">
+  <h2>Reiniciar el avance</h2>
+  <p>Se borra el avance de las tres lecturas en este navegador. El modo claro u oscuro se conserva.</p>
+  <div class="row">
+    <button type="button" id="dlg-no">Cancelar</button>
+    <button type="button" class="primary" id="dlg-yes">Borrar avance</button>
+  </div>
+</dialog>
+<script>
+window.__u4 = { render: function () {}, go: function () {}, toggle: function () {}, reset: function () {} };
+const KEY = "cg-u5-progreso";
+const THEME = "cg-u5-tema";
+
+const FIGS = {
+dos: `<svg viewBox="0 0 320 188" role="img" aria-label="Dos direcciones del proceso: consolidación financiera según NICSP 6 y consolidación económica.">
+  <rect x="16" y="18" width="288" height="70" rx="14" fill="#0e5c4a"/>
+  <text x="32" y="48" fill="#f7fffb" font-size="16" font-family="Georgia, serif">Información financiera</text>
+  <text x="32" y="70" fill="#f7fffb" font-size="13" font-family="Georgia, serif">NICSP 6 · estados consolidados</text>
+  <rect x="16" y="102" width="288" height="70" rx="14" fill="#8a5a12"/>
+  <text x="32" y="132" fill="#fffdf8" font-size="16" font-family="Georgia, serif">Consolidación económica</text>
+  <text x="32" y="154" fill="#fffdf8" font-size="13" font-family="Georgia, serif">Visión general y sectorial</text>
+</svg>`,
+extra: `<svg viewBox="0 0 320 188" role="img" aria-label="La consolidación agrega estados ya hechos y elimina operaciones internas, sin un asiento nuevo.">
+  <rect x="16" y="36" width="86" height="64" rx="12" fill="#0e5c4a"/>
+  <rect x="116" y="36" width="86" height="64" rx="12" fill="#0e5c4a"/>
+  <text x="32" y="74" fill="#f7fffb" font-size="14" font-family="Georgia, serif">Entidad</text>
+  <text x="132" y="74" fill="#f7fffb" font-size="14" font-family="Georgia, serif">Entidad</text>
+  <path d="M202 68 H236" stroke="currentColor" stroke-width="3"/>
+  <path d="M228 58 l14 10 -14 10" fill="currentColor"/>
+  <rect x="242" y="28" width="64" height="80" rx="12" fill="#8a5a12"/>
+  <text x="254" y="64" fill="#fffdf8" font-size="13" font-family="Georgia, serif">Una</text>
+  <text x="254" y="82" fill="#fffdf8" font-size="13" font-family="Georgia, serif">sola</text>
+  <text x="16" y="150" fill="currentColor" font-size="13" font-family="Georgia, serif">Ajuste extra libros: se anula lo interno</text>
+</svg>`,
+marco: `<svg viewBox="0 0 320 200" role="img" aria-label="Tres capas del marco: Constitución, leyes y decretos.">
+  <rect x="28" y="16" width="264" height="50" rx="12" fill="#1c2430"/>
+  <rect x="28" y="76" width="264" height="50" rx="12" fill="#0e5c4a"/>
+  <rect x="28" y="136" width="264" height="50" rx="12" fill="#8a5a12"/>
+  <text x="44" y="46" fill="#f7fffb" font-size="16" font-family="Georgia, serif">Constitución · art. 280</text>
+  <text x="44" y="106" fill="#f7fffb" font-size="16" font-family="Georgia, serif">Leyes 32 y 97</text>
+  <text x="44" y="166" fill="#fffdf8" font-size="16" font-family="Georgia, serif">Decretos 220, 288 y 01</text>
+</svg>`,
+actores: `<svg viewBox="0 0 320 188" role="img" aria-label="La controladora y las controladas forman la entidad económica, que se expresa en los estados consolidados.">
+  <rect x="18" y="24" width="130" height="52" rx="12" fill="#8a5a12"/>
+  <rect x="172" y="24" width="130" height="52" rx="12" fill="#0e5c4a"/>
+  <text x="36" y="55" fill="#fffdf8" font-size="14" font-family="Georgia, serif">Controladora</text>
+  <text x="196" y="55" fill="#f7fffb" font-size="14" font-family="Georgia, serif">Controladas</text>
+  <path d="M160 88 v18" stroke="currentColor" stroke-width="3"/>
+  <rect x="48" y="112" width="224" height="52" rx="12" fill="#1c2430"/>
+  <text x="70" y="144" fill="#f7fffb" font-size="15" font-family="Georgia, serif">Entidad económica · EFC</text>
+</svg>`,
+flujo: `<svg viewBox="0 0 320 200" role="img" aria-label="De los estados individuales de controladas y controladora a los estados consolidados.">
+  <rect x="14" y="18" width="90" height="70" rx="10" fill="#0e5c4a"/>
+  <rect x="114" y="18" width="90" height="70" rx="10" fill="#0e5c4a"/>
+  <rect x="214" y="18" width="90" height="70" rx="10" fill="#8a5a12"/>
+  <text x="36" y="48" fill="#f7fffb" font-size="13" font-family="Georgia, serif">EF n1</text>
+  <text x="136" y="48" fill="#f7fffb" font-size="13" font-family="Georgia, serif">EF n2</text>
+  <text x="228" y="48" fill="#fffdf8" font-size="13" font-family="Georgia, serif">EF de la</text>
+  <text x="228" y="66" fill="#fffdf8" font-size="13" font-family="Georgia, serif">controladora</text>
+  <path d="M160 96 v22" stroke="currentColor" stroke-width="3"/>
+  <rect x="40" y="126" width="240" height="54" rx="12" fill="#1c2430"/>
+  <text x="78" y="158" fill="#f7fffb" font-size="16" font-family="Georgia, serif">Estados consolidados</text>
+</svg>`,
+limpia: `<svg viewBox="0 0 320 188" role="img" aria-label="Primero se suman las partidas y después se eliminan las operaciones internas.">
+  <rect x="16" y="28" width="130" height="120" rx="14" fill="#0e5c4a"/>
+  <text x="32" y="70" fill="#f7fffb" font-size="16" font-family="Georgia, serif">Sumar</text>
+  <text x="32" y="94" fill="#f7fffb" font-size="13" font-family="Georgia, serif">línea por línea</text>
+  <rect x="174" y="28" width="130" height="120" rx="14" fill="#8a5a12"/>
+  <text x="190" y="70" fill="#fffdf8" font-size="16" font-family="Georgia, serif">Eliminar</text>
+  <text x="190" y="94" fill="#fffdf8" font-size="13" font-family="Georgia, serif">lo interno</text>
+  <text x="190" y="116" fill="#fffdf8" font-size="13" font-family="Georgia, serif">del grupo</text>
+</svg>`,
+metodos: `<svg viewBox="0 0 320 188" role="img" aria-label="Dos métodos: integración global cuando hay control, y participación cuando hay influencia significativa.">
+  <rect x="16" y="22" width="288" height="70" rx="14" fill="#0e5c4a"/>
+  <text x="32" y="52" fill="#f7fffb" font-size="16" font-family="Georgia, serif">Integración global</text>
+  <text x="32" y="74" fill="#f7fffb" font-size="13" font-family="Georgia, serif">NICSP 6 · hay control</text>
+  <rect x="16" y="106" width="288" height="64" rx="14" fill="#8a5a12"/>
+  <text x="32" y="134" fill="#fffdf8" font-size="16" font-family="Georgia, serif">Participación</text>
+  <text x="32" y="154" fill="#fffdf8" font-size="13" font-family="Georgia, serif">NICSP 7 · influencia, sin control</text>
+</svg>`,
+linea: `<svg viewBox="0 0 320 188" role="img" aria-label="La controladora suma línea a línea y luego elimina transferencias, cuentas recíprocas y resultados internos.">
+  <rect x="16" y="20" width="288" height="36" rx="8" fill="#0e5c4a"/>
+  <rect x="16" y="64" width="288" height="36" rx="8" fill="#0e5c4a" opacity=".85"/>
+  <rect x="16" y="108" width="288" height="36" rx="8" fill="#8a5a12"/>
+  <text x="28" y="44" fill="#f7fffb" font-size="14" font-family="Georgia, serif">Homogeneizar con el plan de cuentas</text>
+  <text x="28" y="88" fill="#f7fffb" font-size="14" font-family="Georgia, serif">Sumar partida por partida</text>
+  <text x="28" y="132" fill="#fffdf8" font-size="14" font-family="Georgia, serif">Eliminar lo que es interno</text>
+</svg>`,
+costo: `<svg viewBox="0 0 320 188" role="img" aria-label="La inversión se registra al costo y después sube o baja con el ahorro o el desahorro de la participada.">
+  <rect x="20" y="40" width="120" height="100" rx="14" fill="#1c2430"/>
+  <text x="40" y="86" fill="#f7fffb" font-size="16" font-family="Georgia, serif">Costo</text>
+  <text x="40" y="108" fill="#f7fffb" font-size="13" font-family="Georgia, serif">inicial</text>
+  <path d="M150 90 H190" stroke="currentColor" stroke-width="3"/>
+  <path d="M182 80 l14 10 -14 10" fill="currentColor"/>
+  <rect x="198" y="28" width="102" height="52" rx="10" fill="#0e5c4a"/>
+  <rect x="198" y="96" width="102" height="52" rx="10" fill="#8a5a12"/>
+  <text x="214" y="60" fill="#f7fffb" font-size="14" font-family="Georgia, serif">Ahorro</text>
+  <text x="214" y="128" fill="#fffdf8" font-size="14" font-family="Georgia, serif">Desahorro</text>
+</svg>`
+};
+
+const R = {
+l1: {
+  kicker: "Lectura 1",
+  title: "Estructura y marco de la consolidación",
+  blurb: "Cómo se unen entidades independientes en una sola visión, y qué normas de Panamá lo exigen.",
+  cover: "dos",
+  intro: "La lectura recorre dos direcciones: la consolidación de la información financiera y la consolidación económica, y el marco que las sostiene en Panamá. Referencias: Contraloría General de la República (2017 y 2023).",
+  modules: [
+    {
+      title: "Una sola unidad, según la NICSP 6",
+      fig: "dos",
+      paras: [
+        "Consolidar permite ver la situación económica y financiera del Estado como un todo. Sirve para rendir cuentas, decidir y controlar los recursos públicos.",
+        "Se combinan informes de entidades que siguen siendo independientes en lo jurídico, y se presentan como una única unidad económica."
+      ],
+      sections: [
+        { title: "Información financiera", text: "Es una de las dos direcciones del macroproceso. Su fin es producir los estados financieros consolidados del sector público, en conformidad con la NICSP 6, Estados financieros consolidados y separados (Decreto 288-2014-DMySC).", items: [
+          "Objetivo: criterios para preparar y presentar esos estados, cuando hay control y la información se integra.",
+          "Ámbito: entidades del sector público, con la excepción de las empresas públicas, en lo relativo a la consolidación y al tratamiento en los estados individuales.",
+          "Controladora y controlada: quien puede dirigir las políticas financieras y operativas de otra.",
+          "Entidad económica: el conjunto que integra controladora y controladas.",
+          "Intereses minoritarios: la parte del patrimonio y de los resultados que corresponde a inversionistas ajenos al control mayoritario."
+        ]},
+        { title: "Control y presentación", items: [
+          "El control se mira con los votos que se pueden ejercer y con la influencia real, potencial o regulatoria. También puede nacer de un acuerdo o de un hecho con efecto parecido sobre la gobernanza.",
+          "Se consolida línea por línea: activos, pasivos, ingresos, gastos y patrimonio de todas las controladas.",
+          "Los intereses minoritarios van dentro del patrimonio, separados de los de la controladora."
+        ]},
+        { title: "Operaciones, estados separados y revelación", items: [
+          "Homogeneización: las mismas políticas en toda la entidad económica.",
+          "Eliminaciones: se quitan saldos y transacciones entre entidades, por ejemplo cuentas por pagar e ingresos internos, para no contarlos dos veces.",
+          "Se incluyen resultados desde la fecha de adquisición hasta la de control, y las disposiciones hasta la fecha en que se pierde el control.",
+          "En los estados individuales, la inversión en controladas se lleva al costo, por participación o como instrumento financiero. Hay que revelar el método y justificar si alguna queda fuera del consolidado.",
+          "Se listan las controladas importantes: nombre, jurisdicción, porcentaje de propiedad y de voto. También las exclusiones, el efecto de compras y ventas en activos y resultados del periodo actual y del anterior, y el método usado en los estados separados."
+        ]},
+        { text: "Puede haber exención si la controladora está totalmente controlada y no participa en mercados públicos. En los primeros tres años tras la adopción se pueden omitir algunas eliminaciones entre entidades, siempre que eso se revele." }
+      ],
+      act: {
+        q: "Una cuenta por pagar entre dos entidades del propio sector, al consolidar, ¿qué pide esta lectura?",
+        options: [
+          "Eliminarla, junto con el ingreso interno, para no contarla dos veces.",
+          "Volver a registrarla en un libro nuevo de la controladora.",
+          "Dejarla, porque cada entidad es independiente."
+        ],
+        ok: 0,
+        why: "Las eliminaciones suprimen saldos y transacciones entre entidades, como cuentas por pagar e ingresos internos. Sin eso habría doble contabilización."
+      }
+    },
+    {
+      title: "Extra libros, y la visión económica",
+      fig: "extra",
+      paras: [
+        "Este proceso se integra en el Proceso Contable Gubernamental (PCG). Dentro del PCG, la consolidación de la información financiera ocurre en la etapa llamada Proceso: la información individual se analiza, se agrega y se consolida."
+      ],
+      sections: [
+        { title: "No es un asiento nuevo", text: "La consolidación es extra contable. No se abre un registro formal de las transacciones ni se copian los asientos que cada entidad ya hizo. Se agregan partidas parecidas de estados ya homogeneizados y se hacen ajustes y eliminaciones extra libros.", items: [
+          "Esos ajustes anulan lo interno o intrasistema, como una transferencia de recursos entre entidades del propio sector.",
+          "Así el consolidado muestra al sector como una sola entidad."
+        ]},
+        { title: "Quién hace qué", items: [
+          "La Contraloría General de la República es el órgano rector: fija la normativa y los métodos de consolidación.",
+          "El Ministerio de Economía y Finanzas dirige la administración financiera del Estado y prepara y presenta los estados consolidados.",
+          "Esa información consolidada es una salida del PCG."
+        ]},
+        { title: "La otra dirección: consolidación económica", text: "No produce el estado según la NICSP 6. Busca el propósito macroeconómico de esa agregación: conocer la situación económica general y sectorial, con las reglas panameñas y directrices de organismos como el Fondo Monetario Internacional.", items: [
+          "También es una salida del PCG. El MEF la usa para decisiones macroeconómicas, incluidas políticas fiscales y monetarias.",
+          "Sirve para rendir cuentas del conjunto de los administradores y para las estadísticas de las finanzas públicas.",
+          "Tampoco duplica asientos. Parte de lo financiero y lo no financiero que ya elaboró el Proceso Contable Institucional de cada entidad. Los ajustes extra libros pertenecen a la consolidación financiera; su resultado es esta visión agregada.",
+          "Las NICSP, en el Manual General de Contabilidad Gubernamental, buscan que esa información sea comparable también entre países."
+        ]}
+      ],
+      act: {
+        q: "¿La consolidación económica vuelve a registrar cada factura en un libro nacional?",
+        options: [
+          "No. Reúne y agrega información que cada entidad ya elaboró en su proceso institucional.",
+          "Sí. Cada hecho se contabiliza otra vez en el MEF.",
+          "Solo si la entidad es una empresa pública."
+        ],
+        ok: 0,
+        why: "La lectura dice que no hay un registro formal nuevo ni se duplican los asientos. Se recopila y se unifica lo financiero y lo no financiero que ya salió del proceso institucional."
+      }
+    },
+    {
+      title: "Constitución, leyes y decretos",
+      fig: "marco",
+      paras: [
+        "Consolidar no es solo una técnica. La Constitución Política de 1972, en el artículo 280, da a la Contraloría las bases del control fiscal y de la transparencia. El Manual, versión II, aprobado por el Decreto 01-2017-DN-MySC, recuerda esos numerales."
+      ],
+      sections: [
+        { title: "Artículo 280", items: [
+          "Numeral 5: recabar de los funcionarios informes sobre la gestión fiscal de dependencias nacionales, provinciales, municipales, autónomas o semiautónomas, y de las empresas estatales. Sin esa facultad no habría datos que consolidar.",
+          "Numeral 8: establecer los métodos de contabilidad de esas dependencias. De ahí salen el devengo, un plan de cuentas común, único y uniforme, los procedimientos y la adopción de las NICSP.",
+          "Numeral 9: examinar, intervenir y fenecer las cuentas de quien administre, maneje o custodie fondos o bienes públicos. Así se cuida la fiabilidad de lo individual antes de unirlo. El examen de los estados, institucionales y consolidados, sostiene la credibilidad de la información.",
+          "Esa competencia está en la Contraloría, no solo en un ministerio. El MEF dirige y presenta. La autonomía del órgano fiscalizador ayuda a que la información se vea objetiva, para el Órgano Ejecutivo, el Legislativo, la ciudadanía, organismos internacionales e inversionistas."
+        ]},
+        { title: "Leyes que cita el Manual", items: [
+          "Ley 32 de 8 de noviembre de 1984, orgánica de la Contraloría. El artículo 12 le da en exclusiva instituir los métodos y sistemas de contabilidad y velar por su aplicación. El artículo 11, numeral 9, pide fijar por resolución la fecha en que serán obligatorios.",
+          "Eso permite un sistema común y pedir los informes. La Contraloría también examina los estados institucionales y consolidados, antes y después de consolidar.",
+          "Ley 97 de 21 de diciembre de 1998: obliga al MEF a presentar los estados financieros consolidados del sector público. La Contraloría norma; el MEF compila y presenta.",
+          "Esas leyes buscan integrar la contabilidad financiera y la presupuestaria. Abren el camino a las NICSP y a las Guías de prácticas recomendadas. El Manual versión II, vigente desde 2017, es la guía de reconocimiento, medición y revelación."
+        ]},
+        { title: "Tres decretos", items: [
+          "Decreto 220-2014-DMySC, de 25 de julio de 2014: se adoptan las NICSP. Dan una base común para agregar y eliminar operaciones recíprocas.",
+          "Decreto 288-2014-DMySC, de 30 de septiembre de 2014: se aprueba la primera versión del Manual basado en las NICSP.",
+          "Decreto 01-2017-DNMySC, de 3 de enero de 2017: se aprueba el Manual versión II, el vigente en esta lectura. Publicado en la Gaceta Oficial 28198-A del 17 de enero de 2017. Describe la consolidación como agregación, homogeneización y eliminaciones extralibros. El producto son los estados financieros consolidados, con notas y anexos."
+        ]}
+      ],
+      act: {
+        q: "Según esta lectura, ¿qué decreto aprueba el Manual versión II, hoy vigente para este tema?",
+        options: [
+          "El Decreto 01-2017-DNMySC, de 3 de enero de 2017.",
+          "El Decreto 220-2014, que adopta las NICSP.",
+          "El Decreto 288-2014, que aprueba la primera versión del Manual."
+        ],
+        ok: 0,
+        why: "El 220-2014 adopta las NICSP. El 288-2014 aprueba la primera versión del Manual. El 01-2017-DNMySC aprueba la versión II, la que esta lectura trata como vigente."
+      }
+    }
+  ],
+  quiz: [
+    { q: "Consolidar, en esta lectura, es volver a hacer cada asiento en un libro nacional.", options: ["Verdadero", "Falso"], ok: 1, why: "Es extra contable: se agregan partidas de estados ya hechos y se ajusta extra libros. No se duplican los asientos de cada entidad." },
+    { q: "El objetivo de la NICSP 6, según la lectura, es…", options: ["Fijar criterios para preparar y presentar estados financieros consolidados del sector público.", "Sustituir el presupuesto de cada municipio.", "Registrar solo el efectivo del día."], ok: 0, why: "La norma busca esos criterios cuando hay control y la información financiera se integra." },
+    { q: "El ámbito que describe la lectura exceptúa…", options: ["A las empresas públicas, en la consolidación y en el tratamiento de los estados individuales.", "A todos los ministerios.", "Solo a los municipios."], ok: 0, why: "Aplica a entidades del sector público, exceptuando empresas públicas, en lo relativo a la consolidación y al tratamiento en estados individuales." },
+    { q: "Los intereses minoritarios se presentan fuera del patrimonio.", options: ["Verdadero", "Falso"], ok: 1, why: "Van dentro del patrimonio, pero separados de los intereses de la controladora." },
+    { q: "En Panamá, quien prepara y presenta los estados consolidados del sector público es…", options: ["El Ministerio de Economía y Finanzas.", "Cada municipio, por su cuenta y sin agregar.", "Solo un organismo multilateral."], ok: 0, why: "La Contraloría establece la normativa y los métodos. El MEF dirige la administración financiera y prepara y presenta los consolidados." },
+    { q: "La consolidación económica duplica la contabilidad de cada entidad.", options: ["Verdadero", "Falso"], ok: 1, why: "No hay registro formal nuevo. Se recopila lo financiero y lo no financiero que ya elaboró el proceso institucional, para ver la situación general y sectorial." },
+    { q: "El numeral 8 del artículo 280 encarga a la Contraloría…", options: ["Establecer los métodos de contabilidad de las dependencias públicas.", "Presentar ella sola los estados consolidados en lugar del MEF.", "Fijar la política monetaria."], ok: 0, why: "Ese numeral es el mandato para definir métodos, entre ellos el devengo, el plan de cuentas y la adopción de las NICSP. Presentar los consolidados corresponde al MEF por la Ley 97." },
+    { q: "La Ley 97 de 1998, en esta lectura, obliga a…", options: ["El MEF a presentar los estados financieros consolidados del sector público.", "Cada entidad a no usar el plan de cuentas.", "Eliminar la Contraloría del proceso."], ok: 0, why: "Complementa a la Ley 32 de 1984: la Contraloría norma y el MEF compila y presenta." },
+    { q: "El decreto que adopta las NICSP, según la lectura, es…", options: ["El 220-2014-DMySC, de 25 de julio de 2014.", "El 01-2017, que aprueba el Manual versión II.", "La Ley 32 de 1984."], ok: 0, why: "El 220-2014 adopta las NICSP. El 288-2014 aprueba la primera versión del Manual. El 01-2017 aprueba la versión II." },
+    { q: "En los primeros tres años tras adoptar la norma, se pueden omitir algunas eliminaciones entre entidades sin decirlo.", options: ["Verdadero", "Falso"], ok: 1, why: "La transición permite omitir algunas, pero deben revelarse. Otra exención distinta: controladoras totalmente controladas y sin mercados públicos pueden no consolidar." }
+  ]
+},
+l2: {
+  kicker: "Lectura 2",
+  title: "De los estados individuales al consolidado",
+  blurb: "Entidad económica, controladora y controladas, y cómo la suma se limpia de lo interno.",
+  cover: "actores",
+  intro: "La lectura explica cómo los estados de entidades independientes se vuelven un solo informe del sector público. El marco es el Manual y las NICSP. Referencias: Contraloría General de la República (2017 y 2023).",
+  modules: [
+    {
+      title: "No es sumar por sumar",
+      fig: "actores",
+      paras: [
+        "Consolidar no es pegar cifras. Es una técnica que presenta a entidades jurídicamente independientes como si fueran una sola entidad económica. Sirve al ordenamiento de las finanzas, a la rendición de cuentas, a las decisiones y al control.",
+        "La Contraloría, órgano rector, establece los métodos y sistemas de las dependencias públicas. El proceso se apoya en las NICSP. Es extracontable: no hay un registro nuevo ni se duplican documentos o asientos. Se agregan partidas parecidas, ya homogeneizadas, y se ajusta extra libros para anular lo interno. Ese método se llama integración global."
+      ],
+      sections: [
+        { title: "Entidad económica", text: "No es una persona jurídica. Es el grupo (controladora y controladas) que informa como una sola unidad. El producto son los estados financieros consolidados.", items: [
+          "En Panamá el MEF formula y presenta los del sector público. Son de propósito general.",
+          "La Contraloría los examina. Comprenden el estado de situación financiera consolidado, el de resultados integral consolidado, el de cambios en el patrimonio neto consolidado, el de flujos de efectivo consolidado, y las notas, con las políticas significativas y otra información explicativa."
+        ]},
+        { title: "Controladora, según la NICSP 35", text: "Controla a una o más entidades. La clave no es la propiedad, sino el control. Hay control si está expuesta, o tiene derecho, a beneficios variables por su implicación en la otra, y puede influir en la naturaleza y el monto de esos beneficios mediante el poder que ejerce.", items: [
+          "Poder: capacidad actual de dirigir las actividades relevantes, las que afectan el rendimiento o los servicios. En el sector público suele venir de la ley o del estatuto, no de acciones.",
+          "Beneficios variables: financieros, como dividendos, o no financieros, como un objetivo de política o una economía de escala.",
+          "Vínculo: usa ese poder para afectar lo que recibe.",
+          "Hace falta juicio profesional. Se mira la sustancia, no solo la forma jurídica."
+        ]},
+        { title: "Controlada y plan de cuentas", text: "Es aquella sobre la que se ejerce control. Tiene personalidad jurídica propia, pero sus recursos y obligaciones los dirige la controladora. Ella prepara sus estados individuales con calidad, oportunidad y fiabilidad: son el insumo.", items: [
+          "El Manual obliga a usar el Plan General de Cuentas. Los primeros ocho dígitos, hasta la subcuenta, los define la Contraloría, para que todas clasifiquen igual.",
+          "Cada entidad puede abrir niveles analíticos más abajo, sin cambiar la estructura obligatoria."
+        ]}
+      ],
+      act: {
+        q: "Según la NICSP 35 en esta lectura, ¿qué identifica a la controladora?",
+        options: [
+          "El control: poder, beneficios variables y el vínculo entre ambos.",
+          "Ser dueña de más de la mitad, aunque no pueda dirigir.",
+          "Tener personalidad jurídica distinta."
+        ],
+        ok: 0,
+        why: "La clave no es la propiedad. Hacen falta los tres elementos a la vez, y en el sector público el poder a menudo nace de la ley o del estatuto."
+      }
+    },
+    {
+      title: "La materia prima y quien consolida",
+      fig: "flujo",
+      paras: [
+        "La figura de la lectura (Contraloría General de la República, 2017) pone la base abajo y el consolidado arriba. Esta ilustración sigue el texto."
+      ],
+      sections: [
+        { title: "Estados individuales", items: [
+          "Cada controlada (n1, n2 y las que sigan) prepara su propio juego de estados.",
+          "La controladora también prepara los suyos. No solo junta información ajena: tiene transacciones, activos, pasivos y resultados propios, que se informan antes de consolidar.",
+          "Esos estados tienen que ser fiables y completos, y homogéneos: mismas políticas y el mismo plan de cuentas. Sin eso, la fase siguiente no vale. La lectura los llama la materia prima, y pide además que sean oportunos."
+        ]},
+        { title: "Doble papel de la controladora", items: [
+          "Participa: es una entidad más del grupo y produce su información.",
+          "Consolida: recibe los estados de las controladas y los combina con los suyos.",
+          "La flecha hacia la entidad económica y los estados consolidados significa que ella dirige esa transformación."
+        ]}
+      ],
+      act: {
+        q: "¿Qué pasa si los estados individuales no usan las mismas políticas ni el plan de cuentas?",
+        options: [
+          "La consolidación pierde validez: la homogeneización es condición de la fase siguiente.",
+          "No importa: la controladora iguala las cifras al sumar.",
+          "Solo afecta a las notas, no a los estados."
+        ],
+        ok: 0,
+        why: "La lectura dice que, sin estados fiables, oportunos y preparados con políticas uniformes, todo el proceso carecería de validez."
+      }
+    },
+    {
+      title: "Sumar, limpiar y llegar al EFC",
+      fig: "limpia",
+      sections: [
+        { title: "Agregación", text: "La controladora suma, línea por línea, sus saldos con los de todas las controladas: todos los activos, todos los pasivos, todos los ingresos y todos los gastos." },
+        { title: "Eliminaciones, justo después", text: "Quitan la duplicidad y el efecto de lo interno. Con el diagrama, la lectura señala tres casos:", items: [
+          "Anular la inversión de la controladora en n1 y n2 contra el patrimonio de esas controladas.",
+          "Anular una cuenta por cobrar de la controladora a n1 contra la cuenta por pagar de n1 a la controladora.",
+          "Eliminar el ingreso por servicios que n2 facturó a n1, y el gasto en los libros de n1."
+        ]},
+        { text: "Esa limpieza deja solo transacciones con terceros ajenos al grupo." },
+        { title: "El producto", items: [
+          "Los estados financieros consolidados son el conjunto único que muestra al grupo como si fuera una sola empresa.",
+          "La entidad económica es el concepto: el grupo visto como un todo. Los estados consolidados son su expresión contable.",
+          "La conclusión pide identificar bien el control y aplicar la integración global: homogeneizar políticas, agregar saldos y eliminar operaciones dentro del grupo. Así se ve, sin esa distorsión, lo que el Estado tiene y lo que debe."
+        ]}
+      ],
+      act: {
+        q: "Después de sumar, ¿qué eliminación describe la lectura?",
+        options: [
+          "Anular la inversión de la controladora contra el patrimonio de las controladas.",
+          "Sumar otra vez los ingresos internos para no perderlos.",
+          "Borrar los estados individuales y no conservarlos."
+        ],
+        ok: 0,
+        why: "Entre los ajustes está anular esa inversión contra el patrimonio de n1 y n2. También se anulan cuentas recíprocas y los ingresos y gastos entre controladas. El informe final solo muestra lo pactado con terceros ajenos al grupo."
+      }
+    }
+  ],
+  quiz: [
+    { q: "La entidad económica es una persona jurídica distinta.", options: ["Verdadero", "Falso"], ok: 1, why: "Es un concepto contable: el grupo que, para informar, se trata como una sola unidad. El resultado son los estados consolidados." },
+    { q: "Los tres elementos del control, según la NICSP 35 en esta lectura, son…", options: ["Poder, exposición a beneficios variables y el vínculo entre poder y beneficios.", "Propiedad, territorio y presupuesto.", "Costo, valor de mercado y efectivo."], ok: 0, why: "Deben darse juntos. La propiedad no es la clave, y el poder público a menudo viene de la ley o del estatuto." },
+    { q: "En el sector público el poder de la controladora exige siempre una participación accionaria.", options: ["Verdadero", "Falso"], ok: 1, why: "La lectura dice que a menudo se deriva de un marco legal o estatutario, no necesariamente de acciones." },
+    { q: "Los primeros ocho dígitos del plan de cuentas…", options: ["Los define la Contraloría, hasta la subcuenta, y todas las entidades clasifican igual.", "Los inventa cada entidad desde el primer dígito.", "Solo se usan en las notas."], ok: 0, why: "Hasta la subcuenta son obligatorios y comunes. La entidad puede ampliar los niveles analíticos de más abajo." },
+    { q: "Entre los estados consolidados que nombra la lectura está…", options: ["El estado de flujos de efectivo consolidado, junto con situación financiera, resultados integral, cambios en el patrimonio y notas.", "Solo un listado de nómina.", "Únicamente el presupuesto de caja chica."], ok: 0, why: "Esos cuatro estados, más las notas con las políticas y otra información explicativa, son los que la lectura enumera. El MEF los formula y la Contraloría los examina." },
+    { q: "La controladora no prepara estados propios: solo junta los de las demás.", options: ["Verdadero", "Falso"], ok: 1, why: "También es una entidad operativa. Sus activos, pasivos y resultados se informan en sus propios estados antes de consolidar." },
+    { q: "La agregación sumatoria consiste en…", options: ["Sumar línea por línea activos, pasivos, ingresos y gastos de la controladora y de las controladas.", "Promediar solo el patrimonio.", "Copiar el estado de una sola controlada."], ok: 0, why: "Se suman todos los activos, todos los pasivos, todos los ingresos y todos los gastos." },
+    { q: "Una eliminación que la lectura saca del diagrama es…", options: ["Anular la cuenta por cobrar de la controladora contra la cuenta por pagar de la controlada.", "Dejar el ingreso entre n1 y n2 porque ya se cobró.", "Eliminar el efectivo de terceros."], ok: 0, why: "También se anula la inversión contra el patrimonio y el ingreso interno con su gasto. El informe queda solo con terceros ajenos al grupo." },
+    { q: "El consolidado debe conservar los servicios facturados entre entidades del grupo.", options: ["Verdadero", "Falso"], ok: 1, why: "Esos ingresos y gastos se eliminan. La limpieza deja las transacciones con terceros ajenos al grupo." },
+    { q: "La relación entre entidad económica y estados consolidados, en la lectura, es…", options: ["La entidad económica es el grupo visto como un todo; los estados consolidados son su expresión.", "Son dos informes que no se relacionan.", "La entidad económica reemplaza a la Contraloría."], ok: 0, why: "Uno es el concepto y los otros son la manifestación contable. Quien formula y presenta los del sector público es el MEF." }
+  ]
+},
+l3: {
+  kicker: "Lectura 3",
+  title: "Integración global y participación",
+  blurb: "Cuándo se suma línea a línea y cuándo la inversión solo sigue el resultado de la otra entidad.",
+  cover: "metodos",
+  intro: "La lectura compara dos métodos. La integración global vale cuando hay control. La participación vale cuando hay influencia significativa, sin control ni control conjunto. Los regula la Contraloría en el Manual, basado en las NICSP. Referencias: Contraloría General de la República (2017 y 2023).",
+  modules: [
+    {
+      title: "Dos métodos, dos relaciones",
+      fig: "metodos",
+      paras: [
+        "La integración global, NICSP 6, se usa cuando la controladora controla a otra entidad. Incorpora línea a línea activos, pasivos, activos netos o patrimonio, ingresos y gastos.",
+        "La participación, NICSP 7, se usa cuando la inversora influye de forma significativa en la participada, sin control ni control conjunto."
+      ],
+      sections: [
+        { title: "Integración global en Panamá", text: "Es la técnica de consolidación del Manual. La Gaceta Oficial 28198-A toma como referencia la NICSP 6, estados financieros consolidados y tratamiento de las inversiones en entidades controladas. Presenta al grupo como si fuese una sola entidad.", items: [
+          "No crea registros nuevos. Transforma los estados individuales por agregación y ajustes extracontables, para quitar duplicados.",
+          "Lo aplica la entidad económica que actúa mediante una o más controladas."
+        ]},
+        { title: "A quién abarca la entidad económica", text: "Son organizaciones independientes en lo jurídico, bajo una misma dirección o control, al menos estratégico. En el gobierno general la lectura incluye:", items: [
+          "Ministerios, instituciones descentralizadas y gobiernos locales (municipios y juntas locales).",
+          "Otras instituciones sin fines de lucro que no son de mercado, empresas públicas e intermediarios financieros.",
+          "Con eso el MEF elabora los consolidados del sector público: decisiones macroeconómicas, rendición de cuentas, estadísticas de finanzas públicas y comparación con otras jurisdicciones."
+        ]}
+      ],
+      act: {
+        q: "Una entidad dirige las políticas de otra. ¿Qué método corresponde, según esta lectura?",
+        options: [
+          "Integración global, NICSP 6, porque hay control.",
+          "Participación, NICSP 7, porque todo control se contabiliza así.",
+          "Ninguno: se dejan los estados separados sin relacionarlos."
+        ],
+        ok: 0,
+        why: "La integración global se aplica cuando hay control e incorpora línea a línea. La participación es para influencia significativa, sin control ni control conjunto."
+      }
+    },
+    {
+      title: "Homogeneizar, sumar y eliminar",
+      fig: "linea",
+      paras: [
+        "La controladora agrega en sus estados, línea a línea, activos, pasivos, activos netos o patrimonio, ingresos y gastos de las controladas, y hace las eliminaciones que corresponden. En Panamá el Manual lo hace obligatorio para las entidades económicas del gobierno general. La Contraloría dicta políticas, guías y procedimientos."
+      ],
+      sections: [
+        { title: "Tres fases", items: [
+          "Homogeneizar antes de sumar, para que lo parecido se presente igual. Lo facilita el plan de cuentas, común, único y uniforme.",
+          "Agregar partida por partida, también la información no financiera, y conciliar.",
+          "Eliminar lo interno: transferencias otorgadas y recibidas dentro del sector consolidado; cuentas por cobrar y por pagar recíprocas; ganancias o pérdidas entre entidades del grupo que todavía no se realizaron con un tercero externo."
+        ]},
+        { text: "El proceso es extralibros. No duplica los registros de cada entidad. El resultado queda en una hoja de trabajo de consolidación. La Contraloría define códigos y conceptos del plan hasta el octavo dígito. Cada entidad pública debe producir la información financiera y no financiera que alimenta este proceso, para que autoridades y ciudadanía vean la gestión, la eficiencia y la eficacia de los servicios." }
+      ],
+      act: {
+        q: "Dos entidades del grupo se vendieron un bien y la utilidad aún no se realizó con un tercero. ¿Qué hace la controladora?",
+        options: [
+          "Elimina esa utilidad interna.",
+          "La suma dos veces, una en cada entidad.",
+          "La lleva solo al presupuesto de caja."
+        ],
+        ok: 0,
+        why: "Entre las eliminaciones están los resultados de operaciones internas que todavía no se realizaron con terceros externos al grupo. También se eliminan transferencias intrasistema y cuentas recíprocas."
+      }
+    },
+    {
+      title: "Influencia significativa, NICSP 7",
+      fig: "costo",
+      paras: [
+        "La participación sirve si la inversora influye de forma significativa y no controla ni comparte el control. La inversión entra al costo y luego se ajusta por la parte proporcional en los resultados de la participada. Ese ajuste va al resultado de la inversora y al valor en libros de la inversión.",
+        "La lectura lo aplica a entes como fondos, fideicomisos o colegios autónomos en los que el Estado panameño tiene influencia legal o económica, sin control total."
+      ],
+      sections: [
+        { title: "Qué es influir", text: "Es poder intervenir en las políticas financieras y de operación, sin dirigirlas. En Panamá puede verse en una participación considerable de una empresa de economía mixta, o al nombrar gente en la junta sin tener los votos del control.", items: [
+          "El control, recuerda la lectura citando a la Contraloría (2017), nace de poder dirigir esas políticas y no exige por sí solo una participación mayoritaria.",
+          "La influencia significativa es intervenir y participar en las decisiones, no dirigirlas. La guía es la NICSP 7.",
+          "Es un método alternativo: no consolida el grupo bajo control. Contabiliza inversiones concretas. El Manual lo integra al adoptar las NICSP."
+        ]},
+        { title: "Dos momentos del registro", items: [
+          "Al inicio, la inversión se registra por lo desembolsado.",
+          "Después, el valor en libros sube o baja con la porción del ahorro o del desahorro de la participada. El ahorro aumenta la inversión; el desahorro la reduce. Esa porción se reconoce en el resultado de la inversora.",
+          "También se ajusta la parte de la inversora en cambios del patrimonio neto que no vienen del resultado, por ejemplo revaluaciones o reservas por ganancias o pérdidas actuariales."
+        ]}
+      ],
+      act: {
+        q: "La participada cierra con desahorro y la inversora solo tiene influencia significativa. ¿Qué ocurre con la inversión?",
+        options: [
+          "Su valor en libros baja en la porción que corresponde a la inversora, y ese efecto va al resultado de ella.",
+          "Se suman línea a línea todos los activos de la participada.",
+          "La inversión se queda para siempre en el costo inicial."
+        ],
+        ok: 0,
+        why: "Con la NICSP 7 la inversión nace al costo y luego recoge la porción del resultado. El desahorro la disminuye. Sumar línea a línea sería integración global, que exige control."
+      }
+    }
+  ],
+  quiz: [
+    { q: "La integración global se aplica cuando solo hay influencia significativa, sin control.", options: ["Verdadero", "Falso"], ok: 1, why: "Ese caso es la participación, NICSP 7. La integración global, NICSP 6, exige control e incorpora línea a línea." },
+    { q: "La NICSP 6, en esta lectura, pide incorporar línea a línea…", options: ["Activos, pasivos, activos netos o patrimonio, ingresos y gastos.", "Solo el efectivo y el presupuesto de ingresos.", "Únicamente las notas."], ok: 0, why: "Esos son los valores de los estados individuales de las controladas que entran en los de la controladora." },
+    { q: "Dentro de la entidad económica del gobierno general, la lectura incluye…", options: ["Ministerios, instituciones descentralizadas, municipios y juntas locales, además de empresas públicas e intermediarios financieros.", "Solo a las empresas que cotizan en bolsa.", "Únicamente a la Contraloría."], ok: 0, why: "También nombra otras instituciones sin fines de lucro que no son de mercado. Con ese conjunto el MEF elabora los consolidados." },
+    { q: "Consolidar crea asientos nuevos en los libros de cada entidad.", options: ["Verdadero", "Falso"], ok: 1, why: "Es extralibros. No duplica los registros individuales. El trabajo queda en una hoja de consolidación." },
+    { q: "Una eliminación que la lectura pone como ejemplo es…", options: ["Las transferencias otorgadas y recibidas entre entidades del sector que se consolida.", "El sueldo pagado a un tercero ajeno al grupo.", "El costo inicial de una inversión sin influencia."], ok: 0, why: "También se anulan las cuentas por cobrar y por pagar recíprocas, y los resultados internos aún no realizados con terceros externos." },
+    { q: "¿Hasta qué dígito define la Contraloría los códigos del plan, según esta lectura?", options: ["Hasta el octavo.", "Hasta el segundo.", "No define ninguno."], ok: 0, why: "Define códigos y conceptos hasta el octavo dígito, para que la agregación sea posible. El plan es común, único y uniforme." },
+    { q: "En el método de participación la inversión permanece siempre al costo de compra.", options: ["Verdadero", "Falso"], ok: 1, why: "Se reconoce al costo y después se ajusta por la porción del ahorro o desahorro y por otros cambios del patrimonio neto de la participada." },
+    { q: "Si la participada obtiene un ahorro, la inversora…", options: ["Aumenta el valor en libros de la inversión en su porción, y reconoce esa porción en su propio resultado.", "Resta esa porción de su inversión.", "Consolida línea a línea todos los gastos de la participada."], ok: 0, why: "El ahorro incrementa la inversión; el desahorro la reduce. La porción del resultado de la participada entra en el resultado de la inversora." },
+    { q: "Un caso de participación que nombra la lectura es…", options: ["Un fideicomiso o un colegio autónomo en el que el Estado influye sin control total.", "Un ministerio que la controladora dirige por ley.", "Cualquier entidad, haya o no influencia."], ok: 0, why: "También menciona fondos, una empresa de economía mixta y el nombramiento en la junta sin la mayoría que daría control." },
+    { q: "La NICSP 7, en esta lectura, es…", options: ["El método alternativo para una inversión con influencia significativa, no la consolidación del grupo bajo control.", "El único método para todo el sector público.", "Un decreto que deroga el Manual."], ok: 0, why: "La del grupo bajo control es la integración global, NICSP 6. La 7 contabiliza inversiones concretas. El Manual las integra al adoptar las NICSP." }
+  ]
+}
+};
+
+function esc(s) {
+  return String(s)
+    .replace(/&/g, "\u0026amp;")
+    .replace(/</g, "\u0026lt;")
+    .replace(/>/g, "\u0026gt;")
+    .replace(/"/g, "\u0026quot;")
+    .replace(/'/g, "\u0026#39;");
+}
+function blank() {
+  return { l1: { a: {}, q: null }, l2: { a: {}, q: null }, l3: { a: {}, q: null } };
+}
+let state = load();
+function load() {
+  try {
+    const raw = JSON.parse(localStorage.getItem(KEY));
+    if (!raw || !raw.l1 || !raw.l2 || !raw.l3) return blank();
+    return raw;
+  } catch (e) {
+    return blank();
+  }
+}
+function save() { localStorage.setItem(KEY, JSON.stringify(state)); }
+function fig(name) {
+  return '<div class="figure">' + FIGS[name] + '<p class="cap">Ilustración original. Sigue el texto de la lectura y no agrega cifras.</p></div>';
+}
+function listHtml(items) {
+  if (!items || !items.length) return "";
+  return "<ul>" + items.map(function (i) { return "<li>" + esc(i) + "</li>"; }).join("") + "</ul>";
+}
+function sectionsHtml(list) {
+  return (list || []).map(function (s) {
+    return (s.title ? "<h3>" + esc(s.title) + "</h3>" : "") + (s.text ? "<p>" + esc(s.text) + "</p>" : "") + listHtml(s.items);
+  }).join("");
+}
+function paras(arr) {
+  return (arr || []).map(function (p) { return "<p>" + esc(p) + "</p>"; }).join("");
+}
+function scoreOf(id) {
+  const st = state[id].q;
+  if (!st) return 0;
+  return R[id].quiz.reduce(function (n, item, i) { return n + (st.picks[i] === item.ok ? 1 : 0); }, 0);
+}
+function progressOf(id) {
+  const rec = R[id];
+  const st = state[id];
+  const done = rec.modules.filter(function (_, i) { return st.a[i]; }).length;
+  const answered = st.q && st.q.picks ? Object.keys(st.q.picks).length : 0;
+  const finished = answered === rec.quiz.length;
+  return { done: done, total: rec.modules.length, answered: answered, finished: finished, score: finished ? scoreOf(id) : null };
+}
+function route() {
+  const h = (location.hash || "").replace(/^#/, "");
+  if (!h) return { view: "home" };
+  const p = h.split("/");
+  if (!R[p[0]]) return { view: "home" };
+  if (p[1] === "m") return { view: "module", id: p[0], n: Math.max(0, parseInt(p[2], 10) || 0) };
+  if (p[1] === "quiz") return { view: "quiz", id: p[0] };
+  return { view: "reading", id: p[0] };
+}
+function go(h) {
+  const next = h ? "#" + h : "";
+  if (location.hash === next || (!h && (location.hash === "" || location.hash === "#"))) {
+    render();
+    return;
+  }
+  location.hash = h;
+}
+function render() {
+  const r = route();
+  const app = document.getElementById("app");
+  if (!app) return;
+  if (r.view === "home") app.innerHTML = viewHome();
+  else if (r.view === "reading") app.innerHTML = viewReading(r.id);
+  else if (r.view === "module") app.innerHTML = viewModule(r.id, r.n);
+  else app.innerHTML = viewQuiz(r.id);
+  app.querySelectorAll("[data-go]").forEach(function (b) {
+    b.addEventListener("click", function () { go(b.getAttribute("data-go")); });
+  });
+  app.querySelectorAll("[data-act]").forEach(function (b) {
+    b.addEventListener("click", function () {
+      const id = b.getAttribute("data-id");
+      const n = b.getAttribute("data-n");
+      const pick = Number(b.getAttribute("data-act"));
+      if (state[id].a[n]) return;
+      state[id].a[n] = { pick: pick, right: pick === R[id].modules[n].act.ok };
+      save();
+      render();
+    });
+  });
+  app.querySelectorAll("[data-quiz]").forEach(function (b) {
+    b.addEventListener("click", function () {
+      const id = b.getAttribute("data-id");
+      const qi = Number(b.getAttribute("data-qi"));
+      const oi = Number(b.getAttribute("data-quiz"));
+      const q = state[id].q;
+      if (q.picks[qi] != null) return;
+      q.picks[qi] = oi;
+      save();
+      render();
+    });
+  });
+  app.querySelectorAll("[data-qnav]").forEach(function (b) {
+    b.addEventListener("click", function () {
+      state[b.getAttribute("data-id")].q.i = Number(b.getAttribute("data-qnav"));
+      save();
+      render();
+    });
+  });
+  const retry = app.querySelector("[data-retry]");
+  if (retry) {
+    retry.addEventListener("click", function () {
+      const id = retry.getAttribute("data-retry");
+      state[id].q = { i: 0, picks: {} };
+      save();
+      render();
+    });
+  }
+  window.scrollTo(0, 0);
+}
+function viewHome() {
+  const cards = Object.keys(R).map(function (id) {
+    const rec = R[id];
+    const p = progressOf(id);
+    const pct = Math.round(((p.done / p.total) * 0.7 + (p.finished ? 0.3 : (p.answered / rec.quiz.length) * 0.3)) * 100);
+    const quizTxt = p.finished ? ("Cuestionario " + p.score + " de 10") : (p.answered ? ("Cuestionario en curso (" + p.answered + " de 10)") : "Cuestionario sin iniciar");
+    return '<button class="card" type="button" data-go="' + id + '">' + fig(rec.cover) + '<div class="pad"><p class="kicker">' + esc(rec.kicker) + '</p><h2>' + esc(rec.title) + '</h2><p>' + esc(rec.blurb) + '</p><div class="bar" aria-hidden="true"><span style="width:' + pct + '%"></span></div><p class="muted">' + p.done + " de " + p.total + " módulos · " + esc(quizTxt) + "</p></div></button>";
+  }).join("");
+  return '<p class="kicker">Unidad 5</p><h1>Profesor Sergio Tertusio</h1><p class="lead">Tres lecturas para comprender la consolidación en el sector público panameño: el marco, el paso de los estados individuales al consolidado, y los métodos de integración global y de participación. El avance de cada lectura se guarda aparte.</p><div class="grid">' + cards + "</div>";
+}
+function viewReading(id) {
+  const rec = R[id];
+  const p = progressOf(id);
+  const mods = rec.modules.map(function (m, i) {
+    const done = !!state[id].a[i];
+    return '<button class="mod' + (done ? " done" : "") + '" type="button" data-go="' + id + "/m/" + i + '"><span class="num">' + (done ? "✓" : i + 1) + '</span><span><strong>' + esc(m.title) + '</strong><br><span class="muted">' + (done ? "Actividad hecha" : "Lectura y actividad breve") + "</span></span></button>";
+  }).join("");
+  const quizLabel = p.finished ? ("Cuestionario · " + p.score + " de 10") : "Cuestionario de 10 preguntas";
+  return fig(rec.cover) + '<p class="kicker">' + esc(rec.kicker) + "</p><h2>" + esc(rec.title) + "</h2><p>" + esc(rec.intro) + '</p><div class="panel" style="box-shadow:none;margin-top:1rem">' + mods + '<button class="mod" type="button" data-go="' + id + '/quiz"><span class="num">Q</span><span><strong>' + esc(quizLabel) + '</strong><br><span class="muted">Opción múltiple y verdadero o falso, con explicación al momento</span></span></button></div>';
+}
+function viewModule(id, n) {
+  const rec = R[id];
+  const m = rec.modules[n];
+  if (!m) return viewReading(id);
+  const st = state[id].a[n];
+  const opts = m.act.options.map(function (o, i) {
+    let cls = "opt";
+    if (st) {
+      if (i === m.act.ok) cls += " good";
+      else if (i === st.pick) cls += " bad";
+    }
+    return '<button type="button" class="' + cls + '" data-act="' + i + '" data-id="' + id + '" data-n="' + n + '"' + (st ? " disabled" : "") + ">" + esc(o) + "</button>";
+  }).join("");
+  const why = st ? '<div class="why ' + (st.right ? "ok" : "no") + '"><strong>' + (st.right ? "Correcto." : "No es esa.") + "</strong> " + esc(m.act.why) + "</div>" : "";
+  const prev = n > 0 ? '<button type="button" data-go="' + id + "/m/" + (n - 1) + '">Módulo anterior</button>' : "";
+  const next = n < rec.modules.length - 1
+    ? '<button type="button" class="primary" data-go="' + id + "/m/" + (n + 1) + '">Módulo siguiente</button>'
+    : '<button type="button" class="primary" data-go="' + id + '/quiz">Ir al cuestionario</button>';
+  return '<p class="kicker">' + esc(rec.kicker) + " · Módulo " + (n + 1) + " de " + rec.modules.length + "</p><h2>" + esc(m.title) + "</h2>" + fig(m.fig) + paras(m.paras) + sectionsHtml(m.sections) + '<div class="panel"><h3>Actividad</h3><p>' + esc(m.act.q) + "</p>" + opts + why + '</div><div class="row"><button type="button" data-go="' + id + '">Lista de la lectura</button>' + prev + next + "</div>";
+}
+function viewQuiz(id) {
+  const rec = R[id];
+  if (!state[id].q) state[id].q = { i: 0, picks: {} };
+  const qstate = state[id].q;
+  if (qstate.i >= rec.quiz.length) {
+    const score = scoreOf(id);
+    const note = score === 10
+      ? "Las ideas de esta lectura quedaron claras."
+      : score >= 7
+        ? "Hay una base sólida. Conviene releer la explicación de las que no acertaste."
+        : "Conviene volver a los módulos y reintentar el cuestionario con esas ideas a la vista.";
+    return '<p class="kicker">' + esc(rec.kicker) + ' · Cuestionario</p><h2>Resultado</h2><p class="score">' + score + " de 10</p><p>" + esc(note) + '</p><div class="row"><button type="button" class="primary" data-retry="' + id + '">Reintentar</button><button type="button" data-go="' + id + '">Volver a la lectura</button></div>';
+  }
+  const item = rec.quiz[qstate.i];
+  const picked = qstate.picks[qstate.i];
+  const opts = item.options.map(function (o, i) {
+    let cls = "opt";
+    if (picked != null) {
+      if (i === item.ok) cls += " good";
+      else if (i === picked) cls += " bad";
+    }
+    return '<button type="button" class="' + cls + '" data-quiz="' + i + '" data-qi="' + qstate.i + '" data-id="' + id + '"' + (picked != null ? " disabled" : "") + ">" + esc(o) + "</button>";
+  }).join("");
+  const why = picked == null ? "" : '<div class="why ' + (picked === item.ok ? "ok" : "no") + '"><strong>' + (picked === item.ok ? "Correcto." : "No es esa.") + "</strong> " + esc(item.why) + "</div>";
+  const prev = qstate.i > 0 ? '<button type="button" data-qnav="' + (qstate.i - 1) + '" data-id="' + id + '">Anterior</button>' : "";
+  const next = picked == null ? "" : (
+    qstate.i < rec.quiz.length - 1
+      ? '<button type="button" class="primary" data-qnav="' + (qstate.i + 1) + '" data-id="' + id + '">Siguiente</button>'
+      : '<button type="button" class="primary" data-qnav="' + rec.quiz.length + '" data-id="' + id + '">Ver resultado</button>'
+  );
+  return '<p class="kicker">' + esc(rec.kicker) + " · Pregunta " + (qstate.i + 1) + " de 10</p><h2>" + esc(item.q) + "</h2>" + opts + why + '<div class="row">' + prev + next + '<button type="button" data-go="' + id + '">Volver a la lectura</button></div>';
+}
+function applyTheme(t) {
+  document.documentElement.setAttribute("data-theme", t);
+  localStorage.setItem(THEME, t);
+  const btn = document.getElementById("theme");
+  if (!btn) return;
+  const dark = t === "dark";
+  btn.textContent = dark ? "Modo oscuro" : "Modo claro";
+  btn.setAttribute("aria-pressed", dark ? "true" : "false");
+  btn.setAttribute("aria-label", dark ? "Cambiar a modo claro" : "Cambiar a modo oscuro");
+}
+function toggleTheme() {
+  applyTheme(document.documentElement.getAttribute("data-theme") === "dark" ? "light" : "dark");
+}
+function resetProgress() {
+  localStorage.removeItem(KEY);
+  state = blank();
+  const dlg = document.getElementById("dlg");
+  if (dlg && dlg.open) dlg.close();
+  go("");
+}
+window.__u5 = { render: render, go: go, toggle: toggleTheme, reset: resetProgress };
+const savedTheme = localStorage.getItem(THEME);
+applyTheme(savedTheme || (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light"));
+if (!window.__u5Bound) {
+  window.__u5Bound = true;
+  document.getElementById("theme").addEventListener("click", function () { window.__u5.toggle(); });
+  document.getElementById("menu").addEventListener("click", function () { window.__u5.go(""); });
+  document.getElementById("reset").addEventListener("click", function () { document.getElementById("dlg").showModal(); });
+  document.getElementById("dlg-no").addEventListener("click", function () { document.getElementById("dlg").close(); });
+  document.getElementById("dlg-yes").addEventListener("click", function () { window.__u5.reset(); });
+  window.addEventListener("hashchange", function () { window.__u5.render(); });
+}
+render();
+</script>
+</body>
+</html>
